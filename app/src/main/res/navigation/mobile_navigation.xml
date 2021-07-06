@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+1: https://stackoverflow.com/questions/62106569/android-no-start-destination-defined-via-appstartdestination-for-x-x-xid-nav
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_dashboard"> <!-- см. ссылку 1 -->
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.totalrecallkotlin.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/toNotifFragment"
+            app:destination="@id/notificationsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blank1"
+        android:name="com.example.totalrecallkotlin.fragmemts.BlankFragment1"
+        android:label="Данные"
+        tools:layout="@layout/fragment_blank1" />
+
+    <fragment
+        android:id="@+id/blank2"
+        android:name="com.example.totalrecallkotlin.fragmemts.BlankFragment2"
+        android:label="Главная"
+        tools:layout="@layout/fragment_blank2" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.totalrecallkotlin.ui.notifications.NotificationsFragment"
+        android:label="Your notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/blank3"
+        android:name="com.example.totalrecallkotlin.fragmemts.BlankFragment3"
+        android:label="Room"
+        tools:layout="@layout/fragment_blank3" />
+
+</navigation>
