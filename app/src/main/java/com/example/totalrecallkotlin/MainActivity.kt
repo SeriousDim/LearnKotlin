@@ -1,6 +1,6 @@
 package com.example.totalrecallkotlin
 
-import android.annotation.SuppressLint
+import android.app.ActivityOptions
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.totalrecallkotlin.dialogs.AcceptDialogFragment
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
+
 
 class MainActivity : AppCompatActivity() {
     var counter : Int = 0
@@ -57,6 +60,9 @@ class MainActivity : AppCompatActivity() {
 
     fun openSecondActivity(view: View){
         var intent = Intent(this, NavActivity::class.java)
+
+        /*val options =
+            ActivityOptions.makeCustomAnimation(this, R.anim.activity_scale, R.anim.activity_scale)*/
         startActivity(intent)
     }
 

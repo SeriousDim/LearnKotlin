@@ -3,8 +3,9 @@
     package="com.example.totalrecallkotlin">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-feature android:name="android.hardware.type.watch" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
 
     <queries>
         <intent>
@@ -23,29 +24,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TotalRecallKotlin">
+        <activity android:name=".RetrofitActivity">
 
-        <activity
-            android:name=".MainActivityList"
-            android:label="@string/title_activity_main_list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity android:name=".transitions_test.ToActivity" />
+        <activity android:name=".transitions_test.FromActivity" />
+        <activity android:name=".AnimActivity" />
+        <activity
+            android:name=".RecyclerViewActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_recycler_view"
+            android:theme="@style/Theme.TotalRecallKotlin.NoActionBar" />
+        <activity
+            android:name=".MainActivityList"
+            android:label="@string/title_activity_main_list" />
         <activity
             android:name=".NavActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_nav">
-
-        </activity>
+            android:label="@string/title_activity_nav" />
         <!--
          android:configChanges="orientation|screenSize": позволяет НЕ пересоздавать активити
             при повороте устройства. Таким образом, UI не меняется при повороте (не пересоздается)
         -->
         <activity
             android:name=".MainActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize">
+
+        </activity>
     </application>
 
 </manifest>
