@@ -1,6 +1,6 @@
 package com.example.totalrecallkotlin
 
-import android.app.ActivityOptions
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,11 +8,11 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.ScaleAnimation
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.totalrecallkotlin.dialogs.AcceptDialogFragment
+import com.example.totalrecallkotlin.services.MyService
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
@@ -56,6 +56,22 @@ class MainActivity : AppCompatActivity() {
         var data : String? = intent.getStringExtra("STR_DATA")
         if (data != null)
             showSnackbar(data)
+    }
+
+    fun makeNotification(){
+
+    }
+
+    fun takeTime(v: View){
+        var callback = object: TimePickerDialog.OnTimeSetListener {
+            override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+                showToast("" + p1 + ":" + p2)
+            }
+
+        }
+        var dialog = TimePickerDialog(this,
+            callback, 0, 0, true)
+        dialog.show()
     }
 
     fun openSecondActivity(view: View){
@@ -105,19 +121,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun startService(v: View){
+        startService(Intent(this, MyService::class.java))
+    }
+
     fun sendAction(view: View){
         val acceptDialog = AcceptDialogFragment()
         acceptDialog.show(supportFragmentManager, "acceptDialog")
     }
 
     fun showSnackbar(text: String){
-        Snackbar.make(content_main, text, Snackbar.LENGTH_SHORT)
+        Snackbar.make(notif, text, Snackbar.LENGTH_SHORT)
                 .show()
     }
 
     private suspend fun showSnackbar(text: String, buttonText: String, listener: () -> Unit){
         withContext(Main) {
-            Snackbar.make(content_main, text, Snackbar.LENGTH_SHORT)
+            Snackbar.make(notif, text, Snackbar.LENGTH_SHORT)
                     .setAction(buttonText) { listener.invoke() }
                     .show()
         }

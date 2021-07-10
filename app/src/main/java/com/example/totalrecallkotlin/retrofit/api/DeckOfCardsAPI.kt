@@ -1,11 +1,11 @@
 package com.example.totalrecallkotlin.retrofit.api
 
+import android.media.Image
 import com.example.totalrecallkotlin.retrofit.pojo.CardCollection
 import com.example.totalrecallkotlin.retrofit.pojo.Deck
+import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface DeckOfCardsAPI {
 
@@ -14,5 +14,9 @@ interface DeckOfCardsAPI {
 
     @GET("deck/{id}/draw")
     fun getCards(@Path("id") id: String?, @Query("count") count: String): Call<CardCollection>
+
+    @GET
+    @Streaming
+    fun getImage(@Url url: String): Call<ResponseBody>
 
 }

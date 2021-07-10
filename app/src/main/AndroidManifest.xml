@@ -3,10 +3,7 @@
     package="com.example.totalrecallkotlin">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -24,15 +21,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TotalRecallKotlin">
-        <activity android:name=".RetrofitActivity">
+        <service
+            android:name=".services.MyService"
+            android:enabled="true"
+            android:exported="true"></service>
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".AutoAnimActivity"></activity>
+        <activity android:name=".RetrofitActivity"></activity>
         <activity android:name=".transitions_test.ToActivity" />
         <activity android:name=".transitions_test.FromActivity" />
         <activity android:name=".AnimActivity" />
@@ -55,7 +50,11 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
